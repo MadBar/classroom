@@ -7,6 +7,7 @@ public class Person {
 	private String lastName="";
 	private char gender='X';
 	
+	//testar man constructor?
 	//Constructor
 	public Person( String firstName, String lastName,int age, char gender) {		
 		this.age = age;

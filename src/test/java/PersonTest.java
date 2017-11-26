@@ -13,34 +13,39 @@ public class PersonTest {
 	// Question: Is there a point to have all created persons here?
 	Person p = new Person("Rafael", "Silva", 30, 'M');
 
+	// Needed to look. I made seperate tests for get and set and couldn't figure out
+	// the setter
 	@Test
-	public void testGetAge() {
-
-		assertEquals(p.getAge(), 30);
-	}
-	
-	@Test
-	public void testGetFirstName() {
-
-		assertEquals(p.getFirstName().equals("Rafael"), true);
+	public void testSetAndGetAge() {
+		// Guess we test the setter by setting a new value and then extracting that with
+		// the get
+		p.setAge(25);
+		assertEquals(p.getAge(), 25);
 	}
 
-	//Can you only test get methods? Because they setters don't have a return? Look into later
-//	@Test
-//	public void testSetFirstName() {
-//
-//		assertEquals(p.setFirstName().equals("Rafael"), true);
-//	}
-	
 	@Test
-	public void testGetLastName() {
-
-		assertEquals(p.getLastName().equals("Silva"), true);
+	public void testGetAndSetFirstName() {
+		p.setFirstName("Mad");
+		assertEquals(p.getFirstName().equals("Mad"), true);
 	}
-	
-	@Test
-	public void testGetGender() {
 
-		assertEquals(p.getGender(),'M');
+	// Can you only test get methods? Because they setters don't have a return? Look
+	// into later
+	// @Test
+	// public void testSetFirstName() {
+	// String value = p.getFirstName();
+	// assertEquals(p.setFirstName().equals(value), true);
+	// }
+
+	@Test
+	public void testGetAndSetLastName() {
+		p.setLastName("Bar");
+		assertEquals(p.getLastName().equals("Bar"), true);
+	}
+
+	@Test
+	public void testGetAndSetGender() {
+		p.setGender('F');
+		assertEquals(p.getGender(), 'F');
 	}
 }
