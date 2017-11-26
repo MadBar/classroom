@@ -21,6 +21,10 @@ public class ClassroomTest {
 	// ("TEST15", "Spring 16", students);¨
 	Student student1 = new Student("Rafael", "Silva", 20, 'M', 3.1, 5.4, 6.2);
 	Student student2 = new Student("Fredrik", "Mellgren", 20, 'M', 8.0, 8.8, 6.1);
+	Student student3 = new Student("Hans", "Ekstrï¿½m", 20, 'M', 8.8, 5.0, 6.0);
+	Student student4 = new Student("Patrik", "Hollsten", 20, 'F', 8.2, 7.3, 6.0);
+	Student student5 = new Student("Gopi", "Sundarraj", 20, 'M', 8.2, 9.0, 6.0);
+
 	// Student stu = new Student("sdf", "sdf", 30, 'M');
 
 	// Den här skapas både för att fylla classroom så vi kan använda den för alla
@@ -76,7 +80,7 @@ public class ClassroomTest {
 
 	// Works but not pretty haha.
 	@Test
-	public void testANewStudent() {
+	public void testAddNewStudent() {
 
 		cr.addANewStudent(student1);
 
@@ -84,7 +88,8 @@ public class ClassroomTest {
 		// Man kanske måste hämta en student 1 i arrayen för att kunna kolla om den
 		// finns
 		// Inte så här:
-		boolean yes = cr.getStudents().contains(student1);
+		boolean result = false;
+		result = cr.getStudents().contains(student1);
 		// assertEquals(cr.addANewStudent(student1), yes);
 
 		// Onödigt:?
@@ -103,10 +108,11 @@ public class ClassroomTest {
 
 		// ---------------------------------------------------
 
-		if (yes) {
-			String appWentHere = "yey!";
-		}
+//		if (result) {
+//			String appWentHere = "yey!";
+//		}
 
+		assertTrue(result);
 	}
 
 	@Test
@@ -169,77 +175,77 @@ public class ClassroomTest {
 		// System.out.println("The student does not exist!");
 		// }
 
-		// --------------------------------------
-		// Olika senarion att testa:
-		// 1. Om add inte lyckades från början så det inte fanns något att testa. Fail
-		// 2. Om add fungerade, så student exist ändrades till true, men remove inte
-		// fungerade och remove fortsatte vara false. Failed test
-		// 3. Om add fungerade, så student exist ändrades till true, och remove
-		// fungerade och remove blev tru längre ned. Success
-		//
-		//
-		//
-		// metoden remove går att kolla med en boolean i en ifsats för att se vilken väg
-		// prog tar. metoden får ett namn. Vi måste skapa ett eget så vi måste skapa en
-		// student som har ett namn:
-		cr.addANewStudent(student1);
-		boolean studentExists = false;
-		boolean studentShouldBeRemoved = false;
-		boolean studentRemoved = false;
-		Student loopStudent = null;
-		String name = student1.getFirstName();
-
-		// VARI: kan använda studentexist som också är false från början?
-		if (!studentRemoved) {
-			// Kolla igenom listan om studenten är inlaggd/exists:
-			for (int i = 0; i < this.students.size(); i++) {
-				loopStudent = this.students.get(i);
-				// om add lyckats går prog in här:
-				if (loopStudent.getFirstName().contains(name)) {
-					studentExists = true;
-					// Tar bort den
-					this.students.remove(i);
-					studentShouldBeRemoved = true;
-					System.out.println("Student " + name + " Should be removed!");
-
-				}
-			}
-			// efter kollat hela listan och den inte finns: om ej gått in i if, har ej tagit
-			// bort
-			if (!studentExists) {
-				System.out.println("The student didn't exist, so nothing to remove. Add failed?");
-			}
-
-			// Kolla igenom listan igen för verifiera att verkligen inte finns längre:
-			for (int i = 0; i < this.students.size(); i++) {
-				loopStudent = this.students.get(i);
-
-				if (loopStudent.getFirstName().contains(name)) {
-					studentExists = true;
-
-					System.out.println("Student " + name + "still exist!");
-				}
-			}
-			if (!studentRemoved) {
-				System.out.println("Remove failed test");
-			}
-			if(studentShouldBeRemoved) {
-				for (int i = 0; i < this.students.size(); i++) {
-					loopStudent = this.students.get(i);
-
-					if (loopStudent.getFirstName().contains(name)) {
-						studentExists = true;
-
-						System.out.println("Student " + name + "still exist!");
-					}
-				}
-				if(studentRemoved) {
-					
-				}
-				
-			}
-
-		}
+//		// --------------------------------------
+//		// Olika senarion att testa:
+//		// 1. Om add inte lyckades från början så det inte fanns något att testa. Fail
+//		// 2. Om add fungerade, så student exist ändrades till true, men remove inte
+//		// fungerade och remove fortsatte vara false. Failed test
+//		// 3. Om add fungerade, så student exist ändrades till true, och remove
+//		// fungerade och remove blev tru längre ned. Success
+//		//
+//		//
+//		//
+//		// metoden remove går att kolla med en boolean i en ifsats för att se vilken väg
+//		// prog tar. metoden får ett namn. Vi måste skapa ett eget så vi måste skapa en
+//		// student som har ett namn:
+//		cr.addANewStudent(student1);
+//		boolean studentExists = false;
+//		boolean studentShouldBeRemoved = false;
+//		boolean studentRemoved = false;
+//		Student loopStudent = null;
+//		String name = student1.getFirstName();
+//
+//		// VARI: kan använda studentexist som också är false från början?
+//		if (!studentRemoved) {
+//			// Kolla igenom listan om studenten är inlaggd/exists:
+//			for (int i = 0; i < this.students.size(); i++) {
+//				loopStudent = this.students.get(i);
+//				// om add lyckats går prog in här:
+//				if (loopStudent.getFirstName().contains(name)) {
+//					studentExists = true;
+//					// Tar bort den
+//					this.students.remove(i);
+//					studentShouldBeRemoved = true;
+//					System.out.println("Student " + name + " Should be removed!");
+//
+//				}
+//			}
+//			// efter kollat hela listan och den inte finns: om ej gått in i if, har ej tagit
+//			// bort
+//			if (!studentExists) {
+//				System.out.println("The student didn't exist, so nothing to remove. Add failed?");
+//			}
+//
+//			// Kolla igenom listan igen för verifiera att verkligen inte finns längre:
+//			for (int i = 0; i < this.students.size(); i++) {
+//				loopStudent = this.students.get(i);
+//
+//				if (loopStudent.getFirstName().contains(name)) {
+//					studentExists = true;
+//
+//					System.out.println("Student " + name + "still exist!");
+//				}
+//			}
+//			if (!studentRemoved) {
+//				System.out.println("Remove failed test");
+//			}
+//			if(studentShouldBeRemoved) {
+//				for (int i = 0; i < this.students.size(); i++) {
+//					loopStudent = this.students.get(i);
+//
+//					if (loopStudent.getFirstName().contains(name)) {
+//						studentExists = true;
+//
+//						System.out.println("Student " + name + "still exist!");
+//					}
+//				}
+//				if(studentRemoved) {
+//					
+//				}
+//				
+//			}
+//
+//		}
 		// //oavsett om stuidentExist är false eller true. removed or not
 		// if(!studentRemoved){
 		// //Kolla igenom listan om studenten är fortfarande exists:
@@ -261,5 +267,30 @@ public class ClassroomTest {
 		// System.out.println("Remove failed test");
 		// }
 		//
+		
+		//-------------------------------------
+		
+		cr.addANewStudent(student1);
+		cr.addANewStudent(student2);
+		
+		cr.removeAStudent("Rafael");
+		assertEquals(cr.getStudents().contains("Rafael"), false);
+		
+		// här kan du ha ett vilket namn som helst.
+		cr.removeAStudent("Rafael");
+		assertEquals(cr.getStudents().contains("Rafael"), false);
+		
+	}
+	
+	//Ej löst
+	@Test
+	public void printFullRelatory() {
+		cr.addANewStudent(student1);
+		cr.addANewStudent(student2);
+		
+		cr.printFullRelatory();
+		
+//		String test = cr.printFullRelatory();
+		
 	}
 }
